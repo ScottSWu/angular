@@ -26,7 +26,7 @@ gulp.task('format', () => {
     format.format('file', clangFormat)).pipe(gulp.dest('.'));
 });
 
-gulp.task('lint', ['format:enforce', 'tools:build'], () => {
+gulp.task('lint:enforce', () => {
   const tslint = require('gulp-tslint');
   // Built-in rules are at
   // https://github.com/palantir/tslint#supported-rules
@@ -38,6 +38,10 @@ gulp.task('lint', ['format:enforce', 'tools:build'], () => {
       rulesDirectory: 'dist/tools/tslint'
     }))
     .pipe(tslint.report('prose', {emitError: true}));
+});
+
+gulp.task('lint', ['format:enforce', 'tools:build', 'lint:enforce'], (done) => {
+  return done;
 });
 
 gulp.task('tools:build', (done) => { tsc('tools/', done); });

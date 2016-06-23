@@ -40,6 +40,8 @@ $TSC -p modules/tsconfig.json
 
 rm -rf ./dist/packages-dist
 
+exit
+
 for PACKAGE in \
   core \
   compiler \
