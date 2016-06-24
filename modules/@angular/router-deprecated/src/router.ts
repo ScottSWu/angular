@@ -291,6 +291,7 @@ export class Router {
                 return true;
               });
             }
+            return undefined;
           });
         });
   }
@@ -326,6 +327,7 @@ export class Router {
       if (result && isPresent(this._childRouter) && isPresent(instruction.child)) {
         return this._childRouter._routerCanReuse(instruction.child);
       }
+      return undefined;
     });
   }
 
@@ -385,6 +387,7 @@ export class Router {
           if (isPresent(this._childRouter)) {
             return this._childRouter.commit(instruction.child);
           }
+          return undefined;
         });
       }
     }

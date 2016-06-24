@@ -22,6 +22,7 @@ export class ActiveAnimationPlayersMap {
     if (isPresent(playersByAnimation)) {
       return playersByAnimation[animationName];
     }
+    return undefined;
   }
 
   findAllPlayersByElement(element: any): AnimationPlayer[] {

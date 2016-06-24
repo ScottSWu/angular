@@ -198,6 +198,8 @@ export class RouteRegistry {
                 instruction.component, instruction.child, instruction.auxInstruction,
                 candidate.specificity);
           }
+
+          return undefined;
         }));
 
     if ((isBlank(parsedUrl) || parsedUrl.path == '') && possibleMatches.length == 0) {

@@ -35,7 +35,7 @@ export function getResponseURL(xhr: any): string {
   if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
     return xhr.getResponseHeader('X-Request-URL');
   }
-  return;
+  return undefined;
 }
 
 export {isJsObject} from '../src/facade/lang';

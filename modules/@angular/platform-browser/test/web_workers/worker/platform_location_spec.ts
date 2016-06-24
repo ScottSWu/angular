@@ -34,6 +34,7 @@ export function main() {
         if (args.method === 'getLocation') {
           return PromiseWrapper.resolve(loc);
         }
+        return undefined;
       });
       var factory = new MockMessageBrokerFactory(broker);
       return new WebWorkerPlatformLocation(factory, workerBus, null);

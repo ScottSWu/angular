@@ -373,6 +373,7 @@ export class BrowserDomAdapter extends GenericBrowserDomAdapter {
     } else if (target == 'body') {
       return document.body;
     }
+    return undefined;
   }
   getHistory(): History { return window.history; }
   getLocation(): Location { return window.location; }

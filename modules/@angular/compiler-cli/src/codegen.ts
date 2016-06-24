@@ -120,7 +120,7 @@ export class CodeGenerator {
         Promise.all(this.readComponents(absSourcePath))
             .then((metadatas: compiler.CompileDirectiveMetadata[]) => {
               if (!metadatas || !metadatas.length) {
-                return;
+                return undefined;
               }
               metadatas.forEach((metadata) => {
                 let stylesheetPaths = metadata && metadata.template && metadata.template.styleUrls;
