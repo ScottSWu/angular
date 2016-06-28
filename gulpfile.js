@@ -27,6 +27,20 @@ gulp.task('format', () => {
     format.format('file', clangFormat)).pipe(gulp.dest('.'));
 });
 
+gulp.task('format:lint', () => {
+  const tslint = require('gulp-tslint');
+  // Built-in rules are at
+  // https://github.com/palantir/tslint#supported-rules
+  const tslintConfig = require('./tslint.json');
+  return gulp.src(['modules/@angular/**/*.ts', '!modules/@angular/*/test/**'])
+    .pipe(tslint({
+      tslint: require('tslint').default,
+      configuration: tslintConfig,
+      rulesDirectory: 'dist/tools/tslint'
+    }))
+    .pipe(tslint.report('prose', {emitError: true}));
+});
+
 const entrypoints = [
   'dist/packages-dist/core/index.d.ts',
   'dist/packages-dist/core/testing.d.ts',
@@ -85,19 +99,7 @@ gulp.task('public-api:update', (done) => {
       .on('close', (errorCode) => done(errorCode));
 });
 
-gulp.task('lint', ['format:enforce', 'tools:build'], () => {
-  const tslint = require('gulp-tslint');
-  // Built-in rules are at
-  // https://github.com/palantir/tslint#supported-rules
-  const tslintConfig = require('./tslint.json');
-  return gulp.src(['modules/@angular/**/*.ts', '!modules/@angular/*/test/**'])
-    .pipe(tslint({
-      tslint: require('tslint').default,
-      configuration: tslintConfig,
-      rulesDirectory: 'dist/tools/tslint'
-    }))
-    .pipe(tslint.report('prose', {emitError: true}));
-});
+gulp.task('lint', ['format:enforce', 'format:lint', 'tools:build']);
 
 gulp.task('tools:build', (done) => { tsc('tools/', done); });
 

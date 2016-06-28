@@ -109,7 +109,7 @@
     "ts-api-guardian": "0.1.4",
     "ts2dart": "^0.9.10",
     "tsickle": "^0.1.4",
-    "tslint": "^3.10.0-dev.2",
+    "tslint": "file:///usr/local/google/home/sswu/projects/tslint_fixes",
     "typescript": "^1.9.0-dev.20160409",
     "universal-analytics": "^0.3.9",
     "webpack": "^1.12.6",
